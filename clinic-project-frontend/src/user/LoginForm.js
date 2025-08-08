@@ -1,76 +1,78 @@
-// LoginForm.js
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../store/authSlice'; // Adjust the path if needed
-import '../styles/LoginForm.css'; // Import the CSS
+  // LoginForm.js
+  import React, { useState } from 'react';
+  import axios from 'axios';
+  import { useDispatch } from 'react-redux';
+  import { useNavigate } from 'react-router-dom';
+  import { setUser } from '../store/authSlice'; // Adjust the path if needed
+  import '../styles/LoginForm.css'; // Import the CSS
 
-function LoginForm() {
-  const [formData, setFormData] = useState({
-    name: '', email: '', password: '', role: ''
-  });
-
-  const [error, setError] = useState('');
-  const [token, setToken] = useState(null);
-  const dispatch = useDispatch();
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
+  function LoginForm() {
+    const [formData, setFormData] = useState({
+      name: '', email: '', password: '', role: ''
     });
-  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+    const [error, setError] = useState('');
+    const [token, setToken] = useState(null);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+      });
+    };
 
-    try {
-      const response = await axios.post('http://localhost:5000/users/login', formData);
-      setToken(response.data.token);
-      dispatch(setUser({ user: response.data.user, token: response.data.token }));
-      localStorage.setItem('token', response.data.token);
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
-    }
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setError('');
 
-  return (
-    <div className="login-container">
-      <h2>Login</h2>
+      try {
+        const response = await axios.post('http://localhost:5000/users/login', formData);
+        setToken(response.data.token);
+        dispatch(setUser({ user: response.data.user, token: response.data.token }));
+        localStorage.setItem('token', response.data.token);
+        navigate('../doctors');
+      } catch (err) {
+        setError(err.response?.data?.message || 'Login failed');
+      }
+    };
 
-      {error && <p className="message error">{error}</p>}
-      {token && <p className="message success">Logged in successfully!</p>}
+    return (
+      <div className="login-container">
+        <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
-        <div className="login-form-group">
-          <label>Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
+        {error && <p className="message error">{error}</p>}
+        {token && <p className="message success">Logged in successfully!</p>}
 
-        <div className="login-form-group">
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="login-form-group">
+            <label>Name:</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+          </div>
 
-        <div className="login-form-group">
-          <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
+          <div className="login-form-group">
+            <label>Email:</label>
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          </div>
 
-        <div className="login-form-group">
-          <label>Role:</label>
-          <select name="role" value={formData.role} onChange={handleChange} required>
-            <option value="">Select role</option>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-          </select>
-        </div>
+          <div className="login-form-group">
+            <label>Password:</label>
+            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          </div>
 
-        <button type="submit" className="login-button">Login</button>
-      </form>
-    </div>
-  );
-}
+          <div className="login-form-group">
+            <label>Role:</label>
+            <select name="role" value={formData.role} onChange={handleChange} required>
+              <option value="">Select role</option>
+              <option value="admin">Admin</option>
+              <option value="user">User</option>
+            </select>
+          </div>
 
-export default LoginForm;
+          <button type="submit" className="login-button">Login</button>
+        </form>
+      </div>
+    );
+  }
+
+  export default LoginForm;
