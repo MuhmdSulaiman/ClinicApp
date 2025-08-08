@@ -1,84 +1,17 @@
+body {
+  padding-top: 80px; /* space for navbar */
+  background: linear-gradient(to bottom right, #7ee8fa, #80ff72); /* keeps gradient background */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 .book-appointment-container {
   margin: 0 auto;
-  padding: 80px 20px 20px; /* 80px top padding so it starts below navbar */
-  max-width: 500px;
+  padding: 40px 30px;
+  max-width: 700px; /* increased size */
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-}
-body {
-  padding-top: 80px; /* adjust to match navbar height */
-}
-.book-appointment-container h2 {
-  text-align: center;
-  color: #2b4eff;
-  margin-bottom: 20px;
-}
-
-.appointment-form .form-group {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-.appointment-form label {
-  margin-bottom: 5px;
-  font-weight: 600;
-}
-
-.appointment-form input,
-.appointment-form textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.appointment-form input:focus,
-.appointment-form textarea:focus {
-  outline: none;
-  border-color: #2b4eff;
-  box-shadow: 0 0 5px rgba(43, 78, 255, 0.2);
-}
-
-.submit-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #2b4eff;
-  color: white;
-  border: none;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: #1f3ecf;
-}
-
-.success-message {
-  color: green;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.error-message {
-  color: red;
-  text-align: center;
-  margin-bottom: 10px;
-}
-/* Page background and alignment */
-.book-appointment-container {
-  max-width: 500px;
-  margin: 60px auto; /* space for navbar */
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
 }
 
 /* Title */
@@ -112,7 +45,7 @@ textarea {
   resize: none;
 }
 
-/* Success & error messages */
+/* Messages */
 .success-message {
   color: green;
   font-weight: bold;
@@ -130,7 +63,7 @@ textarea {
 /* Submit button */
 .submit-button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #2b4eff;
   color: white;
   border: none;
