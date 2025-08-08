@@ -12,13 +12,13 @@ const Navbar = ({ user }) => {
       <ul>
         {user?.role === "admin" ? (
           <>
-            <li><Link to="/admin/bookings">All Bookings</Link></li>
-            <li><Link to="/admin/doctors">Manage Doctors</Link></li>
+            <li><Link to="/bookings">All Bookings</Link></li>
+            <li><Link to="/doctors">Manage Doctors</Link></li>
           </>
         ) : (
           <>
-            <li><Link to="/my-bookings">My Bookings</Link></li>
-            <li><Link to="/doctors-list">Doctors</Link></li>
+            <li><Link to="/appointments">My Bookings</Link></li>
+            <li><Link to="/doctors">Doctors</Link></li>
           </>
         )}
         <li className="profile">

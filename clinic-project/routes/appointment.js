@@ -51,7 +51,8 @@ router.get('/', verifyToken, adminOnly,async (req, res) => {
 });
 
     // Book appointment
-    router.post('/', verifyToken, requireRole('user'), async (req, res) => {
+    router.post('/', verifyToken, requireRole('user','admin'), async (req, res) => {
+       console.log("Role in token:", req.user.role);
     const { doctor_name, patient_name, age, appointment_date, reason } = req.body;
     if (!doctor_name || !patient_name || !age || !appointment_date)
         return res.status(400).json({ message: 'Required fields missing' });
@@ -68,7 +69,7 @@ router.get('/', verifyToken, adminOnly,async (req, res) => {
         doctor: doctor._id,
         patient_name,
         age,
-        appointment_date,
+        appointment_date, 
         reason,
         });
 
