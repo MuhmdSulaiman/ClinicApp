@@ -37,18 +37,30 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
-// Get user's appointments
-router.get('/', verifyToken, adminOnly,async (req, res) => {
+// Get appointments
+router.get('/', verifyToken, async (req, res) => {
   try {
-    const appointments = await Appointment.find({ user: req.user.id })
-      .populate('doctor', 'name specialization')
-      .populate('user', 'name email');
+    let appointments;
+
+    if (req.user.role === 'admin') {
+      // Admin sees all appointments
+      appointments = await Appointment.find()
+        .populate('doctor', 'name specialization')
+        .populate('user', 'name email');
+    } else {
+      // User sees only their own
+      appointments = await Appointment.find({ user: req.user.id })
+        .populate('doctor', 'name specialization')
+        .populate('user', 'name email');
+    }
+
     return res.status(200).json(appointments);
   } catch (error) {
     console.error('Error fetching appointments:', error);
     return res.status(500).json({ message: 'Server Error' });
   }
 });
+
 
     // Book appointment
     router.post('/', verifyToken, requireRole('user','admin'), async (req, res) => {

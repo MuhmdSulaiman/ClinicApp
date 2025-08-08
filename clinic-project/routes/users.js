@@ -112,6 +112,7 @@ router.get('/me', verifyToken, async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
+// get every appoinments for admin
 
 
 module.exports = router;
