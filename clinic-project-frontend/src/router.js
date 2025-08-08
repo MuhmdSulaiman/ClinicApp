@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   {path: '/login', element: <LoginForm />},
   {path: '/doctors', element: <DoctorList />},
   {path: '/appointments', element: <AppointmentList />},
-  {path: "/book/:doctorId", element: <BookAppointment />},
+  {path: "/book/:doctorName", element: <BookAppointment />},
   {path: '/create-doctor', element: <CreateDoctor />},
   {path: '/profile', element: <UserProfile />},
   {path: '/manage-doctors', element: <ManageDoctors />}

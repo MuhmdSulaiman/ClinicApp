@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/BookAppointments.css';
 
 const BookAppointment = () => {
-  const location = useLocation();
-  // const { doctorId } = useParams();
-  const doctorNameFromRoute = location.state?.doctor_name || '';
+  const { doctorName } = useParams();
 
   const [formData, setFormData] = useState({
     doctor_name: '',
@@ -20,13 +18,13 @@ const BookAppointment = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (doctorNameFromRoute) {
+    if (doctorName) {
       setFormData((prev) => ({
         ...prev,
-        doctor_name: doctorNameFromRoute
+        doctor_name: decodeURIComponent(doctorName)
       }));
     }
-  }, [doctorNameFromRoute]);
+  }, [doctorName]);
 
   const handleChange = (e) => {
     setFormData({
@@ -45,7 +43,7 @@ const BookAppointment = () => {
       if (response.status === 201) {
         setSuccessMessage('Appointment booked successfully!');
         setFormData({
-          doctor_name: doctorNameFromRoute,
+          doctor_name: decodeURIComponent(doctorName),
           patient_name: '',
           age: '',
           appointment_date: '',
@@ -74,7 +72,7 @@ const BookAppointment = () => {
             value={formData.doctor_name}
             onChange={handleChange}
             required
-            readOnly={!!doctorNameFromRoute}
+            readOnly
           />
         </div>
 

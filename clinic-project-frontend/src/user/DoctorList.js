@@ -26,9 +26,10 @@ const DoctorList = () => {
     fetchDoctors();
   }, []);
 
-  const handleBook = (doctorId) => {
-    navigate(`/book/${doctorId}`);
-  };
+  const handleBook = (doctorName) => {
+  navigate(`/book/${encodeURIComponent(doctorName)}`);
+};
+
 
   return (
     <div className="doctor-list-container">
@@ -49,7 +50,7 @@ const DoctorList = () => {
                 <h3>{doctor.name}</h3>
                 <button
                   className="book-btn"
-                  onClick={() => handleBook(doctor._id)}
+                  onClick={() => handleBook(doctor.name)}
                 >
                   Book Appointment
                 </button>
