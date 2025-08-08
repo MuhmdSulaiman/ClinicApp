@@ -17,7 +17,10 @@ const ManageDoctors = () => {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/doctors');
+      const token = localStorage.getItem('token');
+      const res = await axios.get('http://localhost:5000/doctors', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setDoctors(res.data);
     } catch (err) {
       console.error('Error fetching doctors', err);
@@ -31,12 +34,21 @@ const ManageDoctors = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       if (editingDoctorId) {
-        await axios.put(`http://localhost:5000/doctors/${editingDoctorId}`, formData);
+        await axios.patch(
+          `http://localhost:5000/doctors/${editingDoctorId}`,
+          formData,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       } else {
-        await axios.post('http://localhost:5000/doctors', formData);
+        await axios.post(
+          'http://localhost:5000/doctors',
+          formData,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       }
-      setFormData({ name: '', specialization: '', department: '' });
+      setFormData({ name: '', speciality: '', department: '' });
       setEditingDoctorId(null);
       fetchDoctors();
     } catch (err) {
@@ -47,33 +59,48 @@ const ManageDoctors = () => {
   const handleEdit = (doctor) => {
     setFormData({
       name: doctor.name,
-      speciality: doctor.speciality,
+      speciality: doctor.speciality, // fixed spelling
       department: doctor.department
     });
     setEditingDoctorId(doctor._id);
   };
 
   const handleDelete = async (id) => {
-  try {
-    const token = localStorage.getItem('token'); // or wherever you store it
-    await axios.delete(`http://localhost:5000/doctors/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    fetchDoctors();
-  } catch (err) {
-    console.error('Error deleting doctor', err);
-  }
-};
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:5000/doctors/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      fetchDoctors();
+    } catch (err) {
+      console.error('Error deleting doctor', err);
+    }
+  };
 
   return (
     <div className="manage-doctors">
       <h2>{editingDoctorId ? 'Edit Doctor' : 'Add Doctor'}</h2>
       <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
-        <input name="specialization" placeholder="Specialization" value={formData.specialization} onChange={handleChange} required />
-        <input name="department" placeholder="Department" value={formData.department} onChange={handleChange} />
+        <input
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="speciality"
+          placeholder="Speciality"
+          value={formData.speciality}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="department"
+          placeholder="Department"
+          value={formData.department}
+          onChange={handleChange}
+        />
         <button type="submit">{editingDoctorId ? 'Update' : 'Add'}</button>
       </form>
 
@@ -81,7 +108,7 @@ const ManageDoctors = () => {
       <ul>
         {doctors.map((doctor) => (
           <li key={doctor._id}>
-            <strong>{doctor.name}</strong> - {doctor.specialization} - {doctor.department}
+            <strong>{doctor.name}</strong> - {doctor.speciality} - {doctor.department}
             <button onClick={() => handleEdit(doctor)}>Edit</button>
             <button onClick={() => handleDelete(doctor._id)}>Delete</button>
           </li>
