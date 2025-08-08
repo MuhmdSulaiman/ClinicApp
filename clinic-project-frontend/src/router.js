@@ -9,13 +9,13 @@ import CreateDoctor from './user/CreateDoctor';
 import UserProfile from './user/UserProfile';
 import ManageDoctors from './user/ManageDoctors';
 import Layout from './layout'; 
-import AllAppointments from "./user/AllAppoinments";
+// import AllAppointments from "./user/AllAppoinments";
 
 const router = createBrowserRouter([
 
-  { path: '/', element: <SignupForm /> },
+  // { path: '/', element: <SignupForm /> },
   { path: '/signup', element: <SignupForm /> },
-  { path: '/login', element: <LoginForm /> },
+  { path: '/', element: <LoginForm /> },
 
   {
     path: '/',
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       { path: 'create-doctor', element: <CreateDoctor /> },
       { path: 'profile', element: <UserProfile /> },
       { path: 'manage-doctors', element: <ManageDoctors /> },
-      { path: 'appointments', element: <AllAppointments /> },
+      // { path: 'appointments', element: <AllAppointments /> },
     ]
   }
 ]);

@@ -66,28 +66,22 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
     const user = await User.findOne({ email });
     if (!user)
       return res.status(404).json({ message: 'User not found' });
-
-    // Compare password
+   
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
       return res.status(401).json({ message: 'Invalid credentials' });
-
-    // Generate token with role included
-    const token = jwt.sign(
+      const token = jwt.sign(
       {
         userId: user._id,
-        role: user.role, // Include role in token
+        role: user.role, 
       },
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
-
-    // Send token and user info
-    res.json({
+      res.json({
       token,
       user: {
         id: user._id,
@@ -112,7 +106,7 @@ router.get('/me', verifyToken, async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 });
-// get every appoinments for admin
+
 
 
 module.exports = router;
