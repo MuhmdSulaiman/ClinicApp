@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux';
 const UserProfile = () => {
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState('');
-  const token = useSelector((state) => state.auth.user?.token);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
+    console.log("Redux token:", token);
+
     const fetchProfile = async () => {
       try {
         const res = await axios.get('http://localhost:5000/users/me', {
@@ -24,7 +26,7 @@ const UserProfile = () => {
 
     if (token) {
       fetchProfile();
-    } else {
+      } else {
       setError('No token found');
     }
   }, [token]);

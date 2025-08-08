@@ -30,8 +30,8 @@
         const response = await axios.post('http://localhost:5000/users/login', formData);
         setToken(response.data.token);
         dispatch(setUser({ user: response.data.user, token: response.data.token }));
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        // localStorage.setItem('token', response.data.token);
+        // localStorage.setItem("user", JSON.stringify(response.data.user));
 
         navigate('../doctors');
       } catch (err) {

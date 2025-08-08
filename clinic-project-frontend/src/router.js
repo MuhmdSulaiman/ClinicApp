@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       { path: 'create-doctor', element: <CreateDoctor /> },
       { path: 'profile', element: <UserProfile /> },
       { path: 'manage-doctors', element: <ManageDoctors /> },
+      
       // { path: 'appointments', element: <AllAppointments /> },
     ]
   }

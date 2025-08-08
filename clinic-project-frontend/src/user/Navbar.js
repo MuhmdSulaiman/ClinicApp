@@ -17,7 +17,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -39,13 +39,14 @@ const Navbar = () => {
         )}
         {user ? (
           <li className="profile">
-            <span>{user.name}</span>
+             <Link to="/profile" className="profile-link">
+            <span>{user.name}</span></Link>
             <button onClick={handleLogout} className="logout-btn">Logout</button>
           </li>
         ) : (
           <>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/">Login</Link></li>
+            <li><Link to="/signup">Register</Link></li>
           </>
         )}
       </ul>
