@@ -6,8 +6,14 @@ import Navbar from './user/Navbar';
 function Layout() {
   return (
     <>
-      <Navbar />
-      <Outlet /> {/* This is where each page will be shown */}
+      <div className="layout-navbar">
+  <Navbar />
+  
+</div>
+<main>
+  <Outlet />
+</main>
+
     </>
   );
 }

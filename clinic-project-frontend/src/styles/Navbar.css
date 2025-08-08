@@ -1,0 +1,70 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #007bff; /* Clinic blue */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  
+  position: fixed;   /* stays at top */
+  top: 0;
+  left: 0;
+  width: 100%;       /* span full width */
+  z-index: 1000;     /* keep above other content */
+  box-sizing: border-box;
+}
+
+.navbar .logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  opacity: 0.8;
+}
+
+.navbar .profile span {
+  font-weight: bold;
+}
+
+/* Responsive - stack vertically on small screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+}
+body {
+  margin: 0;
+}
+
+/* If your navbar height is around 70px */
+.main-content {
+  padding-top: 70px;
+}

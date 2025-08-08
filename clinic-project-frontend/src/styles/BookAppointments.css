@@ -1,12 +1,15 @@
 .book-appointment-container {
+  margin: 0 auto;
+  padding: 80px 20px 20px; /* 80px top padding so it starts below navbar */
   max-width: 500px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #f5f8ff;
+  background: white;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
-
+body {
+  padding-top: 80px; /* adjust to match navbar height */
+}
 .book-appointment-container h2 {
   text-align: center;
   color: #2b4eff;
@@ -66,4 +69,77 @@
   color: red;
   text-align: center;
   margin-bottom: 10px;
+}
+/* Page background and alignment */
+.book-appointment-container {
+  max-width: 500px;
+  margin: 60px auto; /* space for navbar */
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Title */
+.book-appointment-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2b4eff;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Success & error messages */
+.success-message {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Submit button */
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2b4eff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #1d38b0;
 }
