@@ -14,7 +14,7 @@ export default function AppointmentList() {
     }
 
     axios.get("http://localhost:5000/appointments", {
-      headers: {
+      headers: {  
         Authorization: `Bearer ${token}`
       }
     })

@@ -9,6 +9,14 @@ const Appointment = require('../models/Appointment');
 const { requireRole } = require('../middleware/roleMiddleware');
 const Doctor = require('../models/Doctor');
 
+
+// 
+const adminOnly = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ message: 'Access denied: Admins only' });
+  }
+  next();
+};
 // Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -30,7 +38,7 @@ const verifyToken = (req, res, next) => {
   }
 };
 // Get user's appointments
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', verifyToken, adminOnly,async (req, res) => {
   try {
     const appointments = await Appointment.find({ user: req.user.id })
       .populate('doctor', 'name specialization')
