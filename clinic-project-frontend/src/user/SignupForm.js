@@ -26,7 +26,7 @@ const SignupForm = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/users/signup', formData);
+      const res = await axios.post('https://clinicapp-1-rloo.onrender.com', formData);
       setMessage(res.data.message);
     } catch (err) {
       console.error(err);

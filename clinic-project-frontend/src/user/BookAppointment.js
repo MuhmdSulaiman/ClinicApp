@@ -72,7 +72,7 @@ const BookAppointment = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/appointments",
+        "https://clinicapp-1-rloo.onrender.com",
         {
           ...formData,
           age: Number(formData.age), // ensure age is a number

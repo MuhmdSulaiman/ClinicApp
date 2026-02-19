@@ -27,7 +27,7 @@
       setError('');
 
       try {
-        const response = await axios.post('http://localhost:5000/users/login', formData);
+        const response = await axios.post('https://clinicapp-1-rloo.onrender.com', formData);
         setToken(response.data.token);
         dispatch(setUser({ user: response.data.user, token: response.data.token }));
         // localStorage.setItem('token', response.data.token);

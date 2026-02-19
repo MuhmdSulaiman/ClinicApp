@@ -13,7 +13,7 @@ const DoctorList = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/doctors');
+        const response = await axios.get('https://clinicapp-1-rloo.onrender.com');
         setDoctors(response.data);
       } catch (err) {
         console.error('Error fetching doctors:', err);
