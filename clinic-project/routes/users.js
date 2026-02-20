@@ -14,7 +14,7 @@ const { requireRole } = require('../middleware/roleMiddleware');
 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/login', function(req, res, next) {
   res.send('respond with a resource');
 });
 // Middleware to verify JWT token

@@ -12,7 +12,7 @@ const UserProfile = () => {
 
     const fetchProfile = async () => {
       try {
-        const res = await axios.get('https://clinicapp-1-rloo.onrender.com', {
+        const res = await axios.get('https://clinicapp-1-rloo.onrender.com/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }

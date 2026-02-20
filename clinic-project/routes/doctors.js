@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
   }
 });
 //add doctor
-router.post('/add', verifyToken, requireRole('admin'), async (req, res) => {
+router.post('/', verifyToken, requireRole('admin'), async (req, res) => {
   const { name, speciality, department } = req.body;
   if (!name || !speciality || !department)
     return res.status(400).json({ message: 'All fields are required' });
