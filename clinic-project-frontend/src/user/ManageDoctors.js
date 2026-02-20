@@ -37,7 +37,7 @@ const ManageDoctors = () => {
       const token = localStorage.getItem('token');
       if (editingDoctorId) {
         await axios.patch(
-          `https://clinicapp-1-rloo.onrender.com/${editingDoctorId}`,
+          `https://clinicapp-1-rloo.onrender.com/doctors${editingDoctorId}`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );

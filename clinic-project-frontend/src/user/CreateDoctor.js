@@ -19,7 +19,7 @@ const CreateDoctor = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://clinicapp-1-rloo.onrender.com', formData, {
+      const response = await axios.post('https://clinicapp-1-rloo.onrender.com/doctors', formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
