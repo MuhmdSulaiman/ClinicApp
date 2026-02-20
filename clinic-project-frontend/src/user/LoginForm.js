@@ -5,7 +5,7 @@
   import { useNavigate } from 'react-router-dom';
   import { setUser } from '../store/authSlice'; // Adjust the path if needed
   import '../styles/LoginForm.css'; // Import the CSS
-
+import { Link } from "react-router-dom";
   function LoginForm() {
     const [formData, setFormData] = useState({
       name: '', email: '', password: '', role: ''
@@ -69,10 +69,14 @@
               <option value="admin">Admin</option>
               <option value="user">User</option>
             </select>
+            
           </div>
 
           <button type="submit" className="login-button">Login</button>
         </form>
+        <p>
+  Don't have an account? <Link to="/signup">Sign up</Link>
+</p>
       </div>
     );
   }
