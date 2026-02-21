@@ -42,20 +42,20 @@
     };
 
     return (
-  <div className="login-container">
+  <div className="login-wrapper">
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
+      className="login-card"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6 }}
-      className="login-box"
     >
-      <h2>Login</h2>
+      <h2 className="title">Welcome Back 🚀</h2>
 
       {error && <p className="error">{error}</p>}
 
       <form onSubmit={handleSubmit}>
         <motion.input
-          whileFocus={{ scale: 1.02 }}
+          whileFocus={{ scale: 1.05 }}
           type="email"
           name="email"
           placeholder="Email"
@@ -65,7 +65,7 @@
         />
 
         <motion.input
-          whileFocus={{ scale: 1.02 }}
+          whileFocus={{ scale: 1.05 }}
           type="password"
           name="password"
           placeholder="Password"
@@ -75,7 +75,7 @@
         />
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           type="submit"
         >
@@ -84,7 +84,5 @@
       </form>
     </motion.div>
   </div>
-);
-  }
-
+  );}
   export default LoginForm;
