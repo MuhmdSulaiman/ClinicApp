@@ -4,14 +4,14 @@ const { requireRole } = require('../middleware/roleMiddleware');
 const { validateEmail, validatePassword } = require('../middleware/validationMiddleware');
 
 const {
-  signupUser,
+  SignupUser,
   loginUser,
   getProfile,
   getAllUsers,
   deleteUser
 } = require('../controllers/userController');
 
-router.post('/signup',validateEmail,validatePassword,signupUser);
+router.post('/signup',validateEmail,validatePassword,SignupUser);
 router.post('/login',loginUser);
 router.get('/me', verifyToken,getProfile);
 router.get('/all', verifyToken, requireRole('admin'),getAllUsers);
