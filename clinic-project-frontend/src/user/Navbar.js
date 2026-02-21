@@ -30,6 +30,7 @@ const Navbar = () => {
           <>
             <li><Link to="/appointments">All Bookings</Link></li>
             <li><Link to="/manage-doctors">Manage Doctors</Link></li>
+            <li><Link to="/allusers">Users</Link></li>
           </>
         ) : (
           <>
@@ -49,6 +50,9 @@ const Navbar = () => {
             <li><Link to="/signup">Register</Link></li>
           </>
         )}
+        <link to ="/users">
+        <button>Users</button>
+        </link>
       </ul>
     </nav>
   );
