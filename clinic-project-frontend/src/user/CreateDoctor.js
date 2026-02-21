@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import api from "../services/api";
 
 const CreateDoctor = () => {
   const [formData, setFormData] = useState({
@@ -19,10 +20,8 @@ const CreateDoctor = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://clinicapp-1-rloo.onrender.com/doctors', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      const response = await api.post('/doctors', formData, {
+        
       });
 
       const addedDoctor = response.data.doctor;

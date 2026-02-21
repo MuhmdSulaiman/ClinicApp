@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/BookAppointments.css";
+import api from "../services/api";
 
 const BookAppointment = () => {
   const { doctorName } = useParams();
@@ -71,18 +72,13 @@ const BookAppointment = () => {
         return;
       }
 
-      const response = await axios.post(
-        "https://clinicapp-1-rloo.onrender.com/appointments",
+      const response = await api.post(
+        "/appointments",
         {
           ...formData,
           age: Number(formData.age), // ensure age is a number
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
+        
       );
 
       if (response.status === 201) {

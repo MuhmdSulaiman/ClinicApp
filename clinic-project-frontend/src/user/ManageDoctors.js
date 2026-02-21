@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../services/api";
 
 const ManageDoctors = () => {
   const [doctors, setDoctors] = useState([]);
@@ -19,11 +20,9 @@ const ManageDoctors = () => {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get(
-        "https://clinicapp-1-rloo.onrender.com/doctors",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+      const res = await api.get(
+        "/doctors",
+        
       );
       setDoctors(res.data);
     } catch (err) {
@@ -43,8 +42,8 @@ const ManageDoctors = () => {
     try {
       if (editingId) {
         // UPDATE
-        await axios.patch(
-          `https://clinicapp-1-rloo.onrender.com/doctors/${editingId}`,
+        await api.patch(
+          `/doctors/${editingId}`,
           formData,
           {
             headers: { Authorization: `Bearer ${token}` },

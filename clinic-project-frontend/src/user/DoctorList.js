@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Doctors.css';
 import { useNavigate } from 'react-router-dom';
+import api from "../services/api";
 
 const DoctorList = () => {
   const [doctors, setDoctors] = useState([]);
@@ -13,7 +14,7 @@ const DoctorList = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('https://clinicapp-1-rloo.onrender.com/doctors');
+        const response = await api.get('/doctors');
         setDoctors(response.data);
       } catch (err) {
         console.error('Error fetching doctors:', err);

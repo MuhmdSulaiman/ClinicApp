@@ -7,6 +7,7 @@
   import '../styles/LoginForm.css'; // Import the CSS
   import { Link } from "react-router-dom";
   import { motion } from "framer-motion";
+import api from "../services/api";
   
   function LoginForm() {
     const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@
     });
 
     const [error, setError] = useState('');
-    const [token, setToken] = useState(null);
+    // const [token, setToken] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleChange = (e) => {
@@ -29,8 +30,8 @@
       setError('');
 
       try {
-        const response = await axios.post('https://clinicapp-1-rloo.onrender.com/users/login', formData);
-        setToken(response.data.token);
+        const response = await api.post('/users/login', formData);
+        // setToken(response.data.token);
         dispatch(setUser({ user: response.data.user, token: response.data.token }));
         localStorage.setItem('token', response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));

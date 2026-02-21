@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import api from "../services/api";
 
 export default function AppointmentList() {
   const [appointments, setAppointments] = useState([]);
@@ -13,10 +14,8 @@ export default function AppointmentList() {
       return;
     }
 
-    axios.get("https://clinicapp-1-rloo.onrender.com/appointments", {
-      headers: {  
-        Authorization: `Bearer ${token}`
-      }
+    api.get("/appointments", {
+      
     })
     .then(res => {
       setAppointments(res.data);

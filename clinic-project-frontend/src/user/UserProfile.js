@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import api from "../services/api";
 
 const UserProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -10,13 +11,9 @@ const UserProfile = () => {
   useEffect(() => {
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(
-        'https://clinicapp-1-rloo.onrender.com/users/me',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+      const res = await api.get(
+        '/users/me',
+        
       );
       setProfile(res.data);
     } catch (err) {

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     fetchUsers();
@@ -11,34 +10,22 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(
-        "https://clinicapp-1-rloo.onrender.com/users/all",
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
+      const res = await api.get("/users/all");
       setUsers(res.data);
     } catch (err) {
       console.error("Error fetching users:", err.response?.data);
     }
   };
-const handleDelete = async (id) => {
-  try {
-    const token = localStorage.getItem("token");
 
-    await axios.delete(
-      `https://clinicapp-1-rloo.onrender.com/users/${id}`,
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }
-    );
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/users/${id}`);
+      fetchUsers(); // refresh after delete
+    } catch (err) {
+      console.error("Error deleting user:", err.response?.data);
+    }
+  };
 
-    // refresh user list after delete
-    fetchUsers();
-  } catch (err) {
-    console.error("Error deleting user:", err.response?.data);
-  }
-};
   return (
     <div>
       <h2>All Users</h2>
@@ -49,6 +36,7 @@ const handleDelete = async (id) => {
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -59,26 +47,12 @@ const handleDelete = async (id) => {
               <td>{user.email}</td>
               <td>{user.role}</td>
               <td>
-        <button onClick={() => handleDelete(user._id)}>
-          Delete
-        </button>
-      </td>
+                <button onClick={() => handleDelete(user._id)}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
-          <tbody>
-  {/* {users.map((user) => (
-    <tr key={user._id}>
-      <td>{user.name}</td>
-      <td>{user.email}</td>
-      <td>{user.role}</td>
-      <td>
-        <button onClick={() => handleDelete(user._id)}>
-          Delete
-        </button>
-      </td>
-    </tr>
-  ))} */}
-</tbody>
         </tbody>
       </table>
     </div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/SignupForm.css'
 import { Link } from 'react-router-dom';
+import api from '../services/api';
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const SignupForm = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('https://clinicapp-1-rloo.onrender.com/users/signup', formData);
+      const res = await api.post('users/signup', formData);
       setMessage(res.data.message);
     } catch (err) {
       console.error(err);
