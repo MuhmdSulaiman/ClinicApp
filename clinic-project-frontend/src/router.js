@@ -9,6 +9,7 @@ import CreateDoctor from './user/CreateDoctor';
 import UserProfile from './user/UserProfile';
 import ManageDoctors from './user/ManageDoctors';
 import Layout from './layout'; 
+import Allusers from './user/Allusers'
 // import AllAppointments from "./user/AllAppoinments";
 
 const router = createBrowserRouter([
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       { path: 'create-doctor', element: <CreateDoctor /> },
       { path: 'profile', element: <UserProfile /> },
       { path: 'manage-doctors', element: <ManageDoctors /> },
-      
+      { path: 'allusers',element:<Allusers/>}
       // { path: 'appointments', element: <AllAppointments /> },
     ]
   }
