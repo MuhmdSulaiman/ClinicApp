@@ -58,10 +58,15 @@ const handleDelete = async (id) => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
+              <td>
+        <button onClick={() => handleDelete(user._id)}>
+          Delete
+        </button>
+      </td>
             </tr>
           ))}
           <tbody>
-  {users.map((user) => (
+  {/* {users.map((user) => (
     <tr key={user._id}>
       <td>{user.name}</td>
       <td>{user.email}</td>
@@ -72,7 +77,7 @@ const handleDelete = async (id) => {
         </button>
       </td>
     </tr>
-  ))}
+  ))} */}
 </tbody>
         </tbody>
       </table>
