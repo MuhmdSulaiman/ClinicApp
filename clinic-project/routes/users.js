@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { requireRole } = require('../middleware/roleMiddleware');
 const { validateEmail, validatePassword } = require('../middleware/validationMiddleware');
-
+const verifyToken = require('../middleware/authmiddleware');
 const {
   SignupUser,
   loginUser,
