@@ -13,7 +13,7 @@ export default function AppointmentList() {
       return;
     }
 
-    axios.get("https://clinicapp-1-rloo.onrender.com", {
+    axios.get("https://clinicapp-1-rloo.onrender.com/appointments", {
       headers: {  
         Authorization: `Bearer ${token}`
       }
