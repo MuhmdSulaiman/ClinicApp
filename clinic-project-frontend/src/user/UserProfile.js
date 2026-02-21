@@ -33,6 +33,7 @@ const UserProfile = () => {
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (!profile) return <p>Loading profile...</p>;
 
+  
   return (
     <div style={{ padding: '20px' }}>
       <h2>User Profile</h2>

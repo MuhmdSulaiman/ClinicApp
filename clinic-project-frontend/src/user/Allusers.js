@@ -22,7 +22,23 @@ const AdminUsers = () => {
       console.error("Error fetching users:", err.response?.data);
     }
   };
+const handleDelete = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
 
+    await axios.delete(
+      `https://clinicapp-1-rloo.onrender.com/users/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    );
+
+    // refresh user list after delete
+    fetchUsers();
+  } catch (err) {
+    console.error("Error deleting user:", err.response?.data);
+  }
+};
   return (
     <div>
       <h2>All Users</h2>
@@ -44,6 +60,20 @@ const AdminUsers = () => {
               <td>{user.role}</td>
             </tr>
           ))}
+          <tbody>
+  {users.map((user) => (
+    <tr key={user._id}>
+      <td>{user.name}</td>
+      <td>{user.email}</td>
+      <td>{user.role}</td>
+      <td>
+        <button onClick={() => handleDelete(user._id)}>
+          Delete
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
         </tbody>
       </table>
     </div>
