@@ -43,7 +43,7 @@ const ManageDoctors = () => {
         );
       } else {
         await axios.post(
-          'https://clinicapp-1-rloo.onrender.com',
+          'https://clinicapp-1-rloo.onrender.com/doctors',
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );

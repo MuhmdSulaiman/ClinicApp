@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const CreateDoctor = () => {
   const [formData, setFormData] = useState({
     name: '',
-    specialization: '',
+    speciality: '',
     department: ''
   });
   const [message, setMessage] = useState('');
