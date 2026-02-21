@@ -6,7 +6,7 @@ const ManageDoctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
-    specialization: '',
+    speciality: '',
     department: ''
   });
   const [editingDoctorId, setEditingDoctorId] = useState(null);
