@@ -18,7 +18,7 @@ const ManageDoctors = () => {
   const fetchDoctors = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/doctors', {
+      const res = await axios.get('https://clinicapp-1-rloo.onrender.com/doctor', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDoctors(res.data);
@@ -37,7 +37,7 @@ const ManageDoctors = () => {
       const token = localStorage.getItem('token');
       if (editingDoctorId) {
         await axios.patch(
-          `https://clinicapp-1-rloo.onrender.com/doctors${editingDoctorId}`,
+          `https://clinicapp-1-rloo.onrender.com/doctors/${editingDoctorId}`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -68,7 +68,7 @@ const ManageDoctors = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/doctors/${id}`, {
+      await axios.delete(`https://clinicapp-1-rloo.onrender.com/doctors/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchDoctors();

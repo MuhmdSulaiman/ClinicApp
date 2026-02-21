@@ -54,7 +54,7 @@ const CreateDoctor = () => {
         /><br />
         <input
           type="text"
-          name="specialization"
+          name="speciality"
           placeholder="Specialization"
           value={formData.specialization}
           onChange={handleChange}
