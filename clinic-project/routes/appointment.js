@@ -63,7 +63,7 @@ router.get('/', verifyToken, async (req, res) => {
 
 
     // Book appointment
-    router.post('/', verifyToken, async (req, res) => {
+    router.post('/', verifyToken, requireRole('user','admin'), async (req, res) => {
        console.log("Role in token:", req.user.role);
     const { doctor_name, patient_name, age, appointment_date, reason } = req.body;
     if (!doctor_name || !patient_name || !age || !appointment_date)
