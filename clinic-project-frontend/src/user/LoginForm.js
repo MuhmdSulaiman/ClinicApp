@@ -5,7 +5,9 @@
   import { useNavigate } from 'react-router-dom';
   import { setUser } from '../store/authSlice'; // Adjust the path if needed
   import '../styles/LoginForm.css'; // Import the CSS
-import { Link } from "react-router-dom";
+  import { Link } from "react-router-dom";
+  import { motion } from "framer-motion";
+  
   function LoginForm() {
     const [formData, setFormData] = useState({
       name: '', email: '', password: '', role: ''
@@ -40,45 +42,49 @@ import { Link } from "react-router-dom";
     };
 
     return (
-      <div className="login-container">
-        <h2>Login</h2>
+  <div className="login-container">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="login-box"
+    >
+      <h2>Login</h2>
 
-        {error && <p className="message error">{error}</p>}
-        {token && <p className="message success">Logged in successfully!</p>}
+      {error && <p className="error">{error}</p>}
 
-        <form onSubmit={handleSubmit}>
-          <div className="login-form-group">
-            <label>Name:</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-          </div>
+      <form onSubmit={handleSubmit}>
+        <motion.input
+          whileFocus={{ scale: 1.02 }}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
 
-          <div className="login-form-group">
-            <label>Email:</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
+        <motion.input
+          whileFocus={{ scale: 1.02 }}
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
 
-          <div className="login-form-group">
-            <label>Password:</label>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-          </div>
-
-          <div className="login-form-group">
-            <label>Role:</label>
-            <select name="role" value={formData.role} onChange={handleChange} required>
-              <option value="">Select role</option>
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
-            </select>
-            
-          </div>
-
-          <button type="submit" className="login-button">Login</button>
-        </form>
-        <p>
-  Don't have an account? <Link to="/signup">Sign up</Link>
-</p>
-      </div>
-    );
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          type="submit"
+        >
+          Login
+        </motion.button>
+      </form>
+    </motion.div>
+  </div>
+);
   }
 
   export default LoginForm;
