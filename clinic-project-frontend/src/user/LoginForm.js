@@ -81,7 +81,7 @@
         >
           Login
         </motion.button>
-       <li><Link to="/Signup">Dont have an Account?Signup</Link></li>
+       <p><Link to="/Signup">Dont have an Account?Signup</Link></p>
       </form>
     </motion.div>
   </div>
