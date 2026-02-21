@@ -30,7 +30,7 @@ const CreateDoctor = () => {
 
       setFormData({
         name: '',
-        specialization: '',
+        speciality: '',
         department: ''
       });
     } catch (error) {
