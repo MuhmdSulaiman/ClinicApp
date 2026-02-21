@@ -1,89 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../styles/ManageDoctors.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const ManageDoctors = () => {
   const [doctors, setDoctors] = useState([]);
   const [formData, setFormData] = useState({
-    name: '',
-    speciality: '',
-    department: ''
+    name: "",
+    speciality: "",
+    department: "",
   });
-  const [editingDoctorId, setEditingDoctorId] = useState(null);
+  const [editingId, setEditingId] = useState(null);
 
+  const token = localStorage.getItem("token");
+
+  // 🔹 Fetch doctors
   useEffect(() => {
     fetchDoctors();
   }, []);
 
   const fetchDoctors = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get('https://clinicapp-1-rloo.onrender.com/doctor', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const res = await axios.get(
+        "https://clinicapp-1-rloo.onrender.com/doctors",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setDoctors(res.data);
     } catch (err) {
-      console.error('Error fetching doctors', err);
+      console.error("Error fetching doctors:", err);
     }
   };
 
+  // 🔹 Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // 🔹 Add or Update doctor
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const token = localStorage.getItem('token');
-      if (editingDoctorId) {
+      if (editingId) {
+        // UPDATE
         await axios.patch(
-          `https://clinicapp-1-rloo.onrender.com/doctors/${editingDoctorId}`,
+          `https://clinicapp-1-rloo.onrender.com/doctors/${editingId}`,
           formData,
-          { headers: { Authorization: `Bearer ${token}` } }
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
       } else {
+        // CREATE
         await axios.post(
-          'https://clinicapp-1-rloo.onrender.com/doctors',
+          "https://clinicapp-1-rloo.onrender.com/doctors",
           formData,
-          { headers: { Authorization: `Bearer ${token}` } }
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
       }
-      setFormData({ name: '', speciality: '', department: '' });
-      setEditingDoctorId(null);
-      fetchDoctors();
+
+      setFormData({ name: "", speciality: "", department: "" });
+      setEditingId(null);
+      fetchDoctors(); // refresh list
     } catch (err) {
-      console.error('Error saving doctor', err);
+      console.error("Error saving doctor:", err.response?.data);
     }
   };
 
+  // 🔹 Edit
   const handleEdit = (doctor) => {
     setFormData({
       name: doctor.name,
-      speciality: doctor.speciality, // fixed spelling
-      department: doctor.department
+      speciality: doctor.speciality,
+      department: doctor.department,
     });
-    setEditingDoctorId(doctor._id);
+    setEditingId(doctor._id);
   };
 
+  // 🔹 Delete
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`https://clinicapp-1-rloo.onrender.com/doctors/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `https://clinicapp-1-rloo.onrender.com/doctors/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       fetchDoctors();
     } catch (err) {
-      console.error('Error deleting doctor', err);
+      console.error("Error deleting doctor:", err.response?.data);
     }
   };
 
   return (
-    <div className="manage-doctors">
-      <h2>{editingDoctorId ? 'Edit Doctor' : 'Add Doctor'}</h2>
+    <div>
+      <h2>{editingId ? "Edit Doctor" : "Add Doctor"}</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           name="name"
-          placeholder="Name"
+          placeholder="Doctor Name"
           value={formData.name}
           onChange={handleChange}
           required
@@ -101,10 +119,13 @@ const ManageDoctors = () => {
           value={formData.department}
           onChange={handleChange}
         />
-        <button type="submit">{editingDoctorId ? 'Update' : 'Add'}</button>
+        <button type="submit">
+          {editingId ? "Update Doctor" : "Add Doctor"}
+        </button>
       </form>
 
       <h3>Doctor List</h3>
+
       <ul>
         {doctors.map((doctor) => (
           <li key={doctor._id}>
