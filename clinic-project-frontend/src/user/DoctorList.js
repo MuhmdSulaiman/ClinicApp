@@ -55,7 +55,7 @@ const DoctorList = () => {
                   Book Appointment
                 </button>
               </div>
-              <p><strong>Specialization:</strong> {doctor.specialization || 'N/A'}</p>
+              <p><strong>Specialization:</strong> {doctor.speciality || 'N/A'}</p>
               {doctor.department && (
                 <p><strong>Department:</strong> {doctor.department}</p>
               )}

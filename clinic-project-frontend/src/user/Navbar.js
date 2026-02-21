@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <Link to="/">Clinic</Link>
+        <Link to="/doctors">Clinic</Link>
       </div>
       <ul>
         {user?.role === "admin" ? (
