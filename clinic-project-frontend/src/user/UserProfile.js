@@ -8,28 +8,27 @@ const UserProfile = () => {
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    console.log("Redux token:", token);
-
-    const fetchProfile = async () => {
-      try {
-        const res = await axios.get('https://clinicapp-1-rloo.onrender.com/users/me', {
+  const fetchProfile = async () => {
+    try {
+      const res = await axios.get(
+        'https://clinicapp-1-rloo.onrender.com/users/me',
+        {
           headers: {
             Authorization: `Bearer ${token}`
           }
-        });
-        setProfile(res.data);
-      } catch (err) {
-        console.error(err);
-        setError(err.response?.data?.message || 'Error fetching profile');
-      }
-    };
-
-    if (token) {
-      fetchProfile();
-      } else {
-      setError('No token found');
+        }
+      );
+      setProfile(res.data);
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.message || 'Error fetching profile');
     }
-  }, [token]);
+  };
+
+  if (!token) return;   // 🔥 just wait
+
+  fetchProfile();
+}, [token]);
 
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (!profile) return <p>Loading profile...</p>;
