@@ -7,11 +7,17 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+  const storedUser = localStorage.getItem("user");
+
+  if (storedUser && storedUser !== "undefined") {
+    try {
       setUser(JSON.parse(storedUser));
+    } catch (error) {
+      console.error("Invalid user in localStorage");
+      localStorage.removeItem("user");
     }
-  }, []);
+  }
+}, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
