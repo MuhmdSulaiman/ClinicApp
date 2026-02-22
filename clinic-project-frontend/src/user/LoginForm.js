@@ -31,13 +31,17 @@ import api from "../services/api";
 
       try {
         const response = await api.post('/users/login', formData);
+          console.log("RESPONSE:", response.data);
         dispatch(setUser(response.data.user));
         dispatch(setToken(response.data.token));              
         localStorage.setItem('token', response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+console.log("Before navigate");
 
         navigate('../doctors');
       } catch (err) {
+        console.log("ERROR OBJECT:", err);
+    console.log("ERROR RESPONSE:", err.response);
         setError(err.response?.data?.message || 'Login failed');
       }
     };
