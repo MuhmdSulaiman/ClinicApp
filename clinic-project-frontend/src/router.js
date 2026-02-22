@@ -8,30 +8,35 @@ import BookAppointment from './user/BookAppointment';
 import CreateDoctor from './user/CreateDoctor';
 import UserProfile from './user/UserProfile';
 import ManageDoctors from './user/ManageDoctors';
-import Layout from './layout'; 
-import Allusers from './user/Allusers'
+import Layout from './layout';
+import Allusers from './user/Allusers';
+import ProtectedRoute from './components/ProtectedRoutes';
+
+
 // import AllAppointments from "./user/AllAppoinments";
 
 const router = createBrowserRouter([
-
-  // { path: '/', element: <SignupForm /> },
   { path: '/signup', element: <SignupForm /> },
   { path: '/', element: <LoginForm /> },
 
   {
     path: '/',
-    element: <Layout />, 
+    element: <ProtectedRoute />,
     children: [
-      { path: 'doctors', element: <DoctorList /> },
-      { path: 'appointments', element: <AppointmentList /> },
-      { path: 'book/:doctorName', element: <BookAppointment /> },
-      { path: 'create-doctor', element: <CreateDoctor /> },
-      { path: 'profile', element: <UserProfile /> },
-      { path: 'manage-doctors', element: <ManageDoctors /> },
-      { path: 'allusers',element:<Allusers/>}
-      // { path: 'appointments', element: <AllAppointments /> },
+      {
+        path: '/',
+        element: <Layout />,
+        children: [
+          { path: 'doctors', element: <DoctorList /> },
+          { path: 'appointments', element: <AppointmentList /> },
+          { path: 'book/:doctorName', element: <BookAppointment /> },
+          { path: 'create-doctor', element: <CreateDoctor /> },
+          { path: 'profile', element: <UserProfile /> },
+          { path: 'manage-doctors', element: <ManageDoctors /> },
+          { path: 'allusers', element: <Allusers /> }
+        ]
+      }
     ]
   }
 ]);
-
 export default router;
