@@ -1,78 +1,173 @@
-body {
-  padding-top: 150px; /* space for navbar */
-  background: linear-gradient(to bottom right, #7ee8fa, #80ff72); /* keeps gradient background */
-  margin: 0;
-  font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.book-appointment-wrapper {
+  min-height: calc(100vh - 100px);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f7fb;
 }
 
 .book-appointment-container {
-  margin: 0 auto;
-  padding: 40px 30px;
-  max-width: 700px; /* increased size */
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-/* Title */
-.book-appointment-container h2 {
+.book-appointment-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #009ffd 0%, #1e1e4a 100%);
+}
+
+.form-header {
   text-align: center;
-  margin-bottom: 20px;
-  color: #2b4eff;
+  margin-bottom: 30px;
 }
 
-/* Form groups */
+.form-header h2 {
+  color: #1e1e4a;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.form-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .form-group {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #1e293b;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-textarea {
-  resize: none;
+.form-group input:read-only {
+  background: #f1f5f9;
+  color: #64748b;
+  cursor: not-allowed;
+  border-color: #cbd5e1;
 }
 
-/* Messages */
-.success-message {
-  color: green;
-  font-weight: bold;
+.form-group input:not(:read-only):focus,
+.form-group textarea:focus {
+  background: #ffffff;
+  border-color: #009ffd;
+  box-shadow: 0 0 0 4px rgba(0, 159, 253, 0.1);
+  outline: none;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 16px;
+  background: #1e1e4a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(30, 30, 74, 0.2);
+}
+
+.submit-button:hover:not(:disabled) {
+  background: #009ffd;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 159, 253, 0.3);
+}
+
+.submit-button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.message-box {
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 24px;
   text-align: center;
-  margin-bottom: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.success-message {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .error-message {
-  color: red;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
-/* Submit button */
-.submit-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #2b4eff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
-.submit-button:hover {
-  background-color: #1d38b0;
+  .book-appointment-container {
+    padding: 30px 20px;
+  }
 }

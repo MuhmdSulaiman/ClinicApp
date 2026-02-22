@@ -1,85 +1,237 @@
-.manage-doctors {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 25px;
-  background-color: #f7f9fc;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.manage-wrapper {
+  min-height: calc(100vh - 100px);
+  padding: 40px 20px;
+  background-color: #f4f7fb;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
-.manage-doctors h2,
-.manage-doctors h3 {
+.manage-doctors {
+  width: 100%;
+  max-width: 900px;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1e1e4a;
+  margin-bottom: 30px;
   text-align: center;
-  color: #333;
+  letter-spacing: -0.5px;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.form-card h2 {
+  margin-top: 0;
+  color: #1e1e4a;
+  font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
-.manage-doctors form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 30px;
+.doctor-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.manage-doctors input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.form-group.full {
+  grid-column: span 2;
 }
 
-.manage-doctors button[type="submit"] {
-  background-color: #4caf50;
+.doctor-form input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #1e293b;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.doctor-form input:focus {
+  background: #ffffff;
+  border-color: #009ffd;
+  box-shadow: 0 0 0 4px rgba(0, 159, 253, 0.1);
+  outline: none;
+}
+
+.submit-btn {
+  padding: 14px;
+  background: #10b981;
   color: white;
-  padding: 10px;
-  font-size: 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  grid-column: span 2;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
-.manage-doctors button[type="submit"]:hover {
-  background-color: #45a049;
+.submit-btn:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
 }
 
-.manage-doctors ul {
-  list-style: none;
-  padding: 0;
-}
-
-.manage-doctors li {
+.list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e8edf4;
-  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.list-header h3 {
+  font-size: 1.5rem;
+  color: #1e1e4a;
+  margin: 0;
+}
+
+.doctors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doctor-list-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.doctor-list-item:hover {
+  transform: translateX(5px);
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.doc-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.doc-avatar {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  color: #0369a1;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.doc-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #1e1e4a;
+}
+
+.doc-details p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.doc-badge {
+  background: #f1f5f9;
+  padding: 4px 8px;
   border-radius: 6px;
-  margin-bottom: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  margin-right: 10px;
 }
 
-.manage-doctors li strong {
-  color: #2c3e50;
+.action-buttons {
+  display: flex;
+  gap: 10px;
 }
 
-.manage-doctors button {
-  margin-left: 10px;
-  padding: 6px 12px;
-  font-size: 14px;
-  border: none;
-  border-radius: 4px;
+.edit-btn,
+.delete-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
 }
 
-.manage-doctors button:hover {
-  opacity: 0.9;
+.edit-btn {
+  background: #e0f2fe;
+  color: #0284c7;
 }
 
-.manage-doctors button:nth-of-type(1) {
-  background-color: #2196f3;
+.edit-btn:hover {
+  background: #0ea5e9;
   color: white;
 }
 
-.manage-doctors button:nth-of-type(2) {
-  background-color: #f44336;
+.delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.delete-btn:hover {
+  background: #ef4444;
   color: white;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .doctor-form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full,
+  .submit-btn {
+    grid-column: 1;
+  }
+
+  .doctor-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .action-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
