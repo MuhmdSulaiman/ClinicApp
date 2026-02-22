@@ -1,6 +1,6 @@
   // LoginForm.js
   import React, { useState } from 'react';
-  import axios from 'axios';
+  // import axios from 'axios';
   import { useDispatch } from 'react-redux';
   import { useNavigate } from 'react-router-dom';
   import { setUser,setToken } from '../store/authSlice'; // Adjust the path if needed
@@ -15,7 +15,7 @@ import api from "../services/api";
     });
 
     const [error, setError] = useState('');
-    const [token, setToken] = useState(null);
+    // const [token, setToken] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleChange = (e) => {
