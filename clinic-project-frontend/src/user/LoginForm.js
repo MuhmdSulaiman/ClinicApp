@@ -3,7 +3,7 @@
   import axios from 'axios';
   import { useDispatch } from 'react-redux';
   import { useNavigate } from 'react-router-dom';
-  import { setUser } from '../store/authSlice'; // Adjust the path if needed
+  import { setUser,setToken } from '../store/authSlice'; // Adjust the path if needed
   import '../styles/LoginForm.css'; // Import the CSS
   import { Link } from "react-router-dom";
   import { motion } from "framer-motion";
@@ -15,7 +15,7 @@ import api from "../services/api";
     });
 
     const [error, setError] = useState('');
-    // const [token, setToken] = useState(null);
+    const [token, setToken] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleChange = (e) => {
@@ -31,8 +31,8 @@ import api from "../services/api";
 
       try {
         const response = await api.post('/users/login', formData);
-        // setToken(response.data.token);
-        dispatch(setUser({ user: response.data.user, token: response.data.token }));
+        dispatch(setUser(response.data.user));
+        dispatch(setToken(response.data.token));              
         localStorage.setItem('token', response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.user));
 
